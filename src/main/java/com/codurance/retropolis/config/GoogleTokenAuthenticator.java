@@ -10,6 +10,7 @@ import java.security.GeneralSecurityException;
 import java.util.Collections;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -18,7 +19,8 @@ import org.springframework.web.servlet.HandlerInterceptor;
 @Profile("!" + Environment.TEST)
 public class GoogleTokenAuthenticator implements HandlerInterceptor {
 
-  private final String CLIENT_ID = "${clientID}";
+  @Value("${clientID}")
+  private String CLIENT_ID;
 
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
