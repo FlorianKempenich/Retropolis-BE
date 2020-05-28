@@ -44,6 +44,9 @@ jobs:
           name: Deploying
           command: eb deploy RetropolisBe-env --debug
 
+      - run:
+          name: Set RDS variables for EB
+          command: eb setenv URL=${URL} USER=${USER} PASS=#{PASS}
 
 workflows:
   version: 2
